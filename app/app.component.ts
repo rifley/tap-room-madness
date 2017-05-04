@@ -5,6 +5,7 @@ import { Keg } from './keg.model';
   selector: 'app-root',
   template: `
   <h1>Welcome to the taproom</h1>
+    <new-keg (newKegSender)="addKeg($event)">dsfa</new-keg>
  <keg-list [childKegList]="masterKegList" (clickSender)="editKeg($event)"></keg-list>
   <hr>
   <edit-keg [childSelectedKeg]="selectedKeg" (doneButtonClickedSender)="finishedEditing()"></edit-keg>
@@ -25,5 +26,9 @@ export class AppComponent {
 
   finishedEditing() {
     this.selectedKeg = null;
+  }
+
+  addKeg(newKegFromChild: Keg) {
+    this.masterKegList.push(newKegFromChild);
   }
 }
